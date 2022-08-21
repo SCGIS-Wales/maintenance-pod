@@ -44,14 +44,14 @@ RUN apk add --no-cache aws-cli
 
 # Latest version of kubectl and helm
 # K8s
-RUN wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VER}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl && \
+RUN wget -q https://dl.k8s.io/release/${KUBECTL_VER}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl  && \
-    wget -q http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VER}-linux-amd64.tar.gz -O - | tar -xvz -C /usr/local/bin/ && \
-    mv /usr/local/bin/linux-amd64/helm /usr/local/bin/helm && \
+    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \
     chmod +x /usr/local/bin/helm && \
+    ./get_helm.sh
 
 # Auto-completion and aliases
-echo 'source <(kubectl completion bash)' >> /root/.bashrc && \
+RUN echo 'source <(kubectl completion bash)' >> /root/.bashrc && \
 echo 'alias k=kubectl' >> /root/.bashrc && \
 
 # Cleanup after installation
