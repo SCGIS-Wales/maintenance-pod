@@ -18,23 +18,23 @@ on:
 jobs:
   linting-alpine:
     name: linting-alpine
-      steps:
-        -
-          name: Linting Dockerfile.alpine
-          uses: actions/checkout@v2 
-          uses: hadolint/hadolint-action@v2.0.0
-          with:
-            dockerfile: Dockerfile.alpine
+    steps:
+      -
+        name: Linting Dockerfile.alpine
+        uses: actions/checkout@v2 
+        uses: hadolint/hadolint-action@v2.0.0
+        with:
+          dockerfile: Dockerfile.alpine
 
   linting-ubuntu:
     name: linting-ubuntu
-      steps:
-        -
-          name: Linting Dockerfile.ubuntu
-          uses: actions/checkout@v2 
-          uses: hadolint/hadolint-action@v2.0.0
-          with:
-            dockerfile: Dockerfile.ubuntu
+    steps:
+      -
+        name: Linting Dockerfile.ubuntu
+        uses: actions/checkout@v2 
+        uses: hadolint/hadolint-action@v2.0.0
+        with:
+          dockerfile: Dockerfile.ubuntu
 
 jobs:
   build-alpine:
