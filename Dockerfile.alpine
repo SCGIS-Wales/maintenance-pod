@@ -47,8 +47,9 @@ RUN apk add --no-cache aws-cli
 RUN wget -q https://dl.k8s.io/release/${KUBECTL_VER}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl  && \
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \
-    chmod +x /usr/local/bin/helm && \
-    ./get_helm.sh
+    chmod +x get_helm.sh && \
+    ./get_helm.sh && \
+    rm -f get_helm.sh
 
 # Auto-completion and aliases
 RUN echo 'source <(kubectl completion bash)' >> /root/.bashrc && \
