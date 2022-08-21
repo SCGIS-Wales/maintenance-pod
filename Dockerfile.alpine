@@ -33,11 +33,11 @@ samba \
 sssd \
 vim \
 vim \ 
-wget && \
+wget
 
 # Cloud provider CLIs
 ## Azure CLI
-curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
 
 ## AWS CLI
 apk add --no-cache aws-cli \
