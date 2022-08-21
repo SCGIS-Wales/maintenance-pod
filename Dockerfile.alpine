@@ -15,6 +15,7 @@ binutils \
 ca-certificates \
 coreutils \
 curl \
+libffi \
 git \
 gnupg \
 jq \
@@ -26,7 +27,7 @@ wget
 
 # Cloud provider CLIs
 ## Azure CLI
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+RUN curl -sL https://aka.ms/InstallAzureCli | bash
 
 ## AWS CLI
 RUN apk add --no-cache aws-cli \
