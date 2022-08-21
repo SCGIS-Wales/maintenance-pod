@@ -19,8 +19,8 @@ on:
 # JOBS section
 jobs:
   # Linting section
-  linting-alpine:
-    name: linting-alpine
+  linting:
+    name: linting
     runs-on: ubuntu-latest
     steps:
       -
@@ -29,12 +29,6 @@ jobs:
         uses: hadolint/hadolint-action@v2.0.0
         with:
           dockerfile: Dockerfile.alpine
-      -
-        name: Linting Dockerfile.ubuntu
-        uses: actions/checkout@v3
-        uses: hadolint/hadolint-action@v2.0.0
-        with:
-          dockerfile: Dockerfile.ubuntu
 
 # Alpine section
   build-alpine:
@@ -75,7 +69,6 @@ jobs:
   build-ubuntu:
     name: build-ubuntu
     runs-on: ubuntu-latest
-    needs: linting-ubuntu
     steps:
       -
         name: Ubuntu - Checkout 
