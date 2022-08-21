@@ -26,8 +26,8 @@ vim \
 wget
 
 # Cloud provider CLIs
-## Azure CLI
-RUN curl -sL https://aka.ms/InstallAzureCli | bash
+## Azure CLI (requires Python 3.x)
+# RUN curl -sL https://aka.ms/InstallAzureCli | bash
 
 ## AWS CLI
 RUN apk add --no-cache aws-cli \

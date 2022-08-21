@@ -21,7 +21,7 @@ curl wget binutils dnsutils ldap-utils openssl ntp ntpdate && \
 
 # Cloud provider CLIs
 ## Azure CLI
-curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+# curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
 
 ## AWS CLI
 apt-get -y install awscli && \
