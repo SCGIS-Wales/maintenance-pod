@@ -57,6 +57,5 @@ echo 'alias k=kubectl' >> /root/.bashrc && \
 
 # Cleanup after installation
 apk del wget && \
-apk cache clean && \
 rm -rf /tmp/* && \
 rm -rf /var/cache/apk/*
