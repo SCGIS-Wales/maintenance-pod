@@ -7,22 +7,19 @@ RUN apk update && \
     apk --no-cache add \
 
 # Common required packages (e.g. for Azure CLI etc)
-ca-certificates \
-curl \
-gnupg \
 apk-tools \
 bash \
 bash-completion \
+bind-tools \
 binutils \
+ca-certificates \
 coreutils \
 curl \
-bind-tools \
 git \
+gnupg \
 jq \
-ldap-utils \
-nano \
-ntp \
-ntpdate \
+openldap-clients \
+chrony \
 openssl \
 samba \
 sssd \

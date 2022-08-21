@@ -11,7 +11,7 @@ RUN apt-get update && \
 apt-get upgrade -y && \
 
 # Install common file manipulator tools (e.g editors)
-apt-get -y install bash jq vim nano git bash-completion \
+apt-get -y install bash jq vim git bash-completion \
 
 # Common required packages (e.g. for Azure CLI etc)
 ca-certificates apt-transport-https lsb-release gnupg \
