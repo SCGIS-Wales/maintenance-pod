@@ -49,6 +49,6 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 apt-get update && apt-get install helm && \
 
 # Cleanup after installation
-apt-get remove wget && apt-get purge wget && \
+apt-get -y remove wget && \
 apt-get autoremove && \
 apt-get clean
