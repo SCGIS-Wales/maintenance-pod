@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 
 # Update local caches repo and upgrade the OS
 
