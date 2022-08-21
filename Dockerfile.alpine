@@ -13,18 +13,13 @@ gnupg \
 apk-tools \
 bash \
 bash-completion \
-bash-completion \
 binutils \
-ca-certificates \
-coreutils \
 coreutils \
 curl \
-dnsutils \
+bind-tools \
 git \
 jq \
-krb5 \
 ldap-utils \
-nano \
 nano \
 ntp \
 ntpdate \
@@ -32,7 +27,6 @@ openssl \
 samba \
 sssd \
 vim \
-vim \ 
 wget
 
 # Cloud provider CLIs
