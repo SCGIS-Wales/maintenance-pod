@@ -1,5 +1,8 @@
 FROM alpine:edge
 
+ARG KUBECTL_VER=v1.24.3
+ARG HELM_VER=v3.9.0
+
 # Update local caches repo and upgrade the OS
 
 # Install common file manipulator tools (e.g editors)
@@ -30,7 +33,7 @@ wget
 # RUN curl -sL https://aka.ms/InstallAzureCli | bash
 
 ## AWS CLI
-RUN apk add --no-cache aws-cli \
+RUN apk add --no-cache aws-cli
 
 # AWS SSM agent
 # mkdir /tmp/ssm && \
@@ -40,12 +43,19 @@ RUN apk add --no-cache aws-cli \
 # service enable amazon-ssm-agent && \
 
 # Latest version of kubectl and helm
-kubectl \
-helm && \
+# K8s
+RUN wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VER}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl && \
+    chmod +x /usr/local/bin/kubectl  && \
+    wget -q http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VER}-linux-amd64.tar.gz -O - | tar -xvz -C /usr/local/bin/ && \
+    mv /usr/local/bin/linux-amd64/helm /usr/local/bin/helm && \
+    chmod +x /usr/local/bin/helm && \
 
 # Auto-completion and aliases
 echo 'source <(kubectl completion bash)' >> /root/.bashrc && \
 echo 'alias k=kubectl' >> /root/.bashrc && \
 
 # Cleanup after installation
-apk cache clean
+apk del wget && \
+apk cache clean && \
+rm -rf /tmp/* && \
+rm -rf /var/cache/apk/*
