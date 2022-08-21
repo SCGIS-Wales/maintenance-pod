@@ -2,7 +2,27 @@
 
 Maintenance pod with swiss knife tools for ad-hoc support within a Kubernetes cluster
 
-# Example use as a Kubernetes deployment pod
+
+## Flavours
+
+There are two (2) different flavours for the container images:
+
+- **Ubuntu** container image
+
+``
+docker.io/ssddgreg/maintenance-pod:ubuntu-latest
+
+``
+
+- **Alpine**  container image
+
+``
+docker.io/ssddgreg/maintenance-pod:alpine-latest
+
+``
+
+
+## Example use as a Kubernetes deployment pod
 
 ```yaml
 ---
@@ -37,11 +57,11 @@ spec:
             memory: 75Mi
 ```
 
-# References
+## References
 
 - location of the container image on Docker Hub<br>
 [https://hub.docker.com/repository/docker/ssddgreg/maintenance-pod](https://hub.docker.com/repository/docker/ssddgreg/maintenance-pod)
 
 
-# Known issues, limitations
+## Known issues, limitations
 

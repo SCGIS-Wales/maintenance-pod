@@ -1,0 +1,61 @@
+FROM alpine:latest
+
+# Update local caches repo and upgrade the OS
+
+# Install common file manipulator tools (e.g editors)
+RUN apk update && \
+    apk --no-cache add \
+
+# Common required packages (e.g. for Azure CLI etc)
+ca-certificates \
+curl \
+gnupg \
+apk-tools \
+bash \
+bash-completion \
+bash-completion \
+binutils \
+ca-certificates \
+coreutils \
+coreutils \
+curl \
+dnsutils \
+git \
+jq \
+krb5 \
+ldap-utils \
+nano \
+nano \
+ntp \
+ntpdate \
+openssl \
+samba \
+sssd \
+vim \
+vim \ 
+wget && \
+
+# Cloud provider CLIs
+## Azure CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+
+## AWS CLI
+apk add --no-cache aws-cli \
+
+# AWS SSM agent
+# mkdir /tmp/ssm && \
+# cd /tmp/ssm && \
+# curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb -o amazon-ssm-agent.deb && \
+# dpkg -i amazon-ssm-agent.deb && rm -f amazon-ssm-agent.deb \
+# service enable amazon-ssm-agent && \
+
+# Latest version of kubectl and helm
+kubectl \
+helm && \
+
+# Auto-completion and aliases
+echo 'source <(kubectl completion bash)' >> /root/.bashrc && \
+echo 'alias k=kubectl' >> /root/.bashrc && \
+
+# Cleanup after installation
+apk cache clean

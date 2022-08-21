@@ -37,13 +37,26 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Build and push
+        name: Alpine - Build and push
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile.alpine
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:latest, ${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:1.0.0
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:alpine-latest, ${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:2.0.0, ${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:latest
+          labels: "alpine"
+          # labels: ${{ steps.meta.outputs.labels }}
+          # cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:buildcache
+          # cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:buildcache,mode=max
+      -
+        name: Ubuntu - Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile.ubuntu
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:ubuntu-latest, ${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:1.0.0
+          labels: "ubuntu"
           # labels: ${{ steps.meta.outputs.labels }}
           # cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:buildcache
           # cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/maintenance-pod:buildcache,mode=max

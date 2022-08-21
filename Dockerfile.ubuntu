@@ -7,32 +7,32 @@ ARG DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-c"]
 
 # Update local caches repo and upgrade the OS
-RUN apt update && \
-# apt upgrade -y && \
+RUN apt-get update && \
+apt-get upgrade -y && \
 
 # Install common file manipulator tools (e.g editors)
-apt -y install bash jq vim nano git bash-completion \
+apt-get -y install bash jq vim nano git bash-completion \
 
 # Common required packages (e.g. for Azure CLI etc)
-ca-certificates curl apt-transport-https lsb-release gnupg snapd \
+ca-certificates apt-transport-https lsb-release gnupg \
 
 # Network & IdM related utilities
 curl wget binutils dnsutils ldap-utils openssl ntp ntpdate \
-realmd libnss-sss libpam-sss sssd sssd-tools krb5-user samba adcli && \
+sssd samba && \
 
 # Cloud provider CLIs
 ## Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
 
 ## AWS CLI
-apt -y install awscli && \
+apt-get -y install awscli && \
 
 # AWS SSM agent
-mkdir /tmp/ssm && \
-cd /tmp/ssm && \
-curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb -o amazon-ssm-agent.deb && \
-dpkg -i amazon-ssm-agent.deb && rm -f amazon-ssm-agent.deb \
-service enable amazon-ssm-agent && \
+# mkdir /tmp/ssm && \
+# cd /tmp/ssm && \
+# curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb -o amazon-ssm-agent.deb && \
+# dpkg -i amazon-ssm-agent.deb && rm -f amazon-ssm-agent.deb \
+# service enable amazon-ssm-agent && \
 
 # Latest version of kubectl
 curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg && \
@@ -43,9 +43,11 @@ apt-get install -y kubectl && \
 # Auto-completion and aliases
 echo 'source <(kubectl completion bash)' >>~/.bashrc && \
 echo 'alias k=kubectl' >>~/.bashrc && \
-. ~/.bashrc && \
 
 # Install Helm
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null && \
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | tee /etc/apt/sources.list.d/helm-stable-debian.list && \
-apt-get update && apt-get install helm
+apt-get update && apt-get install helm && \
+
+# Cleanup after installation
+apt-get clean && apt-get autoclean && rm -fr /var/cache/apt/archives/
