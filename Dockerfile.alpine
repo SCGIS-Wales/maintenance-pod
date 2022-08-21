@@ -26,14 +26,14 @@ openldap-clients \
 chrony \
 openssl \
 vim \
-wget
+wget && \
 
 # Cloud provider CLIs
 ## Azure CLI (requires Python 3.x)
 # RUN curl -sL https://aka.ms/InstallAzureCli | bash
 
 ## AWS CLI
-RUN apk add --no-cache aws-cli
+apk add --no-cache aws-cli && \
 
 # AWS SSM agent
 # mkdir /tmp/ssm && \
@@ -44,15 +44,15 @@ RUN apk add --no-cache aws-cli
 
 # Latest version of kubectl and helm
 # K8s
-RUN wget -q https://dl.k8s.io/release/${KUBECTL_VER}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl && \
+wget -q https://dl.k8s.io/release/${KUBECTL_VER}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl  && \
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \
     chmod +x get_helm.sh && \
     ./get_helm.sh && \
-    rm -f get_helm.sh
+    rm -f get_helm.sh && \
 
 # Auto-completion and aliases
-RUN echo 'source <(kubectl completion bash)' >> /root/.bashrc && \
+echo 'source <(kubectl completion bash)' >> /root/.bashrc && \
 echo 'alias k=kubectl' >> /root/.bashrc && \
 
 # Cleanup after installation
