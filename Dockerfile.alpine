@@ -21,8 +21,6 @@ jq \
 openldap-clients \
 chrony \
 openssl \
-samba \
-sssd \
 vim \
 wget
 

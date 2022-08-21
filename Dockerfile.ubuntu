@@ -17,8 +17,7 @@ apt-get -y install bash jq vim git bash-completion \
 ca-certificates apt-transport-https lsb-release gnupg \
 
 # Network & IdM related utilities
-curl wget binutils dnsutils ldap-utils openssl ntp ntpdate \
-sssd samba && \
+curl wget binutils dnsutils ldap-utils openssl ntp ntpdate && \
 
 # Cloud provider CLIs
 ## Azure CLI
