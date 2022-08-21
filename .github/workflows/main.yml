@@ -21,20 +21,22 @@ jobs:
   # Linting section
   linting-alpine:
     name: linting-alpine
+    runs-on: ubuntu-latest
     steps:
       -
         name: Linting Dockerfile.alpine
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v3 
         uses: hadolint/hadolint-action@v2.0.0
         with:
           dockerfile: Dockerfile.alpine
 
   linting-ubuntu:
     name: linting-ubuntu
+    runs-on: ubuntu-latest
     steps:
       -
         name: Linting Dockerfile.ubuntu
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v3
         uses: hadolint/hadolint-action@v2.0.0
         with:
           dockerfile: Dockerfile.ubuntu
